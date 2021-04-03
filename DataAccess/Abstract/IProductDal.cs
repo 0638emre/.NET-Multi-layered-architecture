@@ -1,4 +1,6 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,7 @@ namespace DataAccess.Abstract
         //işte burada interface ile IEntity repository içindeki operasyonları kullandık ve
         //değişken T yi burada product olarak değiştirdik.
     {
-       
+        List<ProductDetailDto> GetProductDetails();
+        //DTO nun operasyonunu burada çağırıyoruz.
     }
 }

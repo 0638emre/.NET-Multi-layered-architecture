@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //hem category hem product içerisinde zaten kullancağımız operasyonlar var ve burada onları tutacağız.
     //by yüzden burada tutacağız onları. T ile de değişken atıyoruz. ne verirsek onu alsın diye.
