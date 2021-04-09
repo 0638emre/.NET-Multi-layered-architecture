@@ -20,7 +20,7 @@ namespace Core.Utilities.Interceptors
             //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
             //bir üstteki satırda diyor ki. otomatik olarak bütün sistemdeki kodları loglamaya davet et.
             //fakat loglama alt yapımız şuan hazır değil o yüzden onu yorum satırı yapıyorum
-
+            //eğer burada bu loglama işlemini ya da performance işlemini çağırırsan bütün metotları kapsar ve unutulmamış olur.
             return classAttributes.OrderBy(x => x.Priority).ToArray();
             //yukarıda classın methodların attributelerini oku onları bul ve onları bir listeye koy. ardından da
             //onları öncelik değerine göre sıralayarak döndür diyoruz.

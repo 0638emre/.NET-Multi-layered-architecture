@@ -17,7 +17,7 @@ namespace ConsoleUI
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var category in categoryManager.GetAll())
+            foreach (var category in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(category.CategoryName);
             }
@@ -28,7 +28,7 @@ namespace ConsoleUI
             //ProductManager productManager = new ProductManager(new InMemoryProductDal());
             //burada product managerimizi newledik. yani kullanacağımızı belirttik ve parantez içinde
             //ben inmemoryproduct üzerinde çalışıcam diye onu da newledik.
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             //fakat şimdi biz artık database bağlantımızı EntityFramework ile kullanacağız. Enkatmanlı mimarinin faydası budur.
 
             var result = productManager.GetProductDetails();

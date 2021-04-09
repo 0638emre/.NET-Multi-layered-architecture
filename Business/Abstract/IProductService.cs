@@ -20,5 +20,9 @@ namespace Business.Abstract
         //işte burada önceden void Add(Product product); var idi. biz artık Utilities klasörümüzden(araçlar) kendi yazdığımız
         //result u getirdik. (string döndüden message ve bool döndüren succesi)
         //aynı şekilde diğer kodlarımızı da IDataResult ile çağırdık. yani message, boolean ve data ile birlikte.
+        IResult Update(Product product);
+        IResult AddTransactionalTest(Product product);
+        //a kişisinden b kişisine 10 tl aktartıldığını düşünelim.
+        //a kişisinden -10 b kişisine +10 olması demek veritabanında aynı anda iki işlem olması demektir. bu sürece Transactional denir.
     }
 }

@@ -24,6 +24,9 @@ namespace Core.Aspects.Autofac.Validation
             //burada diyoruz ki eğer bizim gönderdiğimiz validator, IValidator değilse. bu hatayı yolla diyoruz 
             _validatorType = validatorType;
         }
+
+
+        //biz loglama gibi işlemlerimizi onbefore olarak seçtik. yani önce yap diyoruz.
         protected override void OnBefore(IInvocation invocation)
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType);
