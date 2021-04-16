@@ -32,16 +32,16 @@ namespace Business.Concrete
         {
             _productDal = productDal;
             _categoryService = categoryService;
-
         }
 
 
         //Hashing herhangi bir şifreyi , MD5 , SHA1 gibi şifrleme fonksiyonları ile saçma bir hale getirmek ve gizlemek.
         //JWT = Json Web Token
         //claim = bu alttaki satır bir claimdir.
-        [SecuredOperation("product.add,admin")]
+
         //bir alt satır aspect tir. bizim validatorumuzu çalıştıracak kısımdır. elbette bunu add fonksiyonunun içinde de yazabilirdik
         //ama o zaman kodumuz spagetti olur.amacımız temiz solid kod yazmaktır. validator işlemlerimizi aspect AOP teknikleriyle yaptık
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
@@ -171,6 +171,7 @@ namespace Business.Concrete
 
             return null;
         }
+
     }
 }
 

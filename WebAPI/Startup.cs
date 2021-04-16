@@ -44,6 +44,9 @@ namespace WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
 
+            services.AddCors();
+            //cors injectionunu yapýlasýný saðlýyoruz apimizde çünkü tarayýcýda verilerimiz göstericez frontend kýsmýnda.
+
             //burada diyoruz ki. sistemimizde biz JWT kullancaðýz haberin olsun.
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -77,6 +80,12 @@ namespace WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
+
+            app.ConfigureCustomExceptionMiddleware();
+            //core katmanýndaki extensionmiddle ware da bunu yazdýk ve bu sýrada kullanýyoruz bunun amacý her yere try catch yazmamaktýr.
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            //bu demek ki : ben bu host http sinde front end ekleyip yayýna alýcam. bana izin ver demektir. birden fazla websitem varsa onlarý , ile ayýrýcam
 
             app.UseHttpsRedirection();
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -42,6 +43,10 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
+
+            //front end de yükleniyor animasyonu için örnek: bekleme animasyonu yükeniyor animasyonu..
+            Thread.Sleep(1000);
+
             //burda dependecy chain vardır. yani IProductService productmanagere bağlı o da productdal a bağlı.
             //IProductService productService = new ProductManager(new EfProductDal());
             var result = _productService.GetAll();
@@ -58,14 +63,43 @@ namespace WebAPI.Controllers
             //bize o sonucu döndürür. fakat biz burayı refactor edeceğiz. öncelikle bu şekilde görelim.
         }
 
+
+        //burayı angularda hangi categoryi seçersek onun ürünleri gelsin demek için yazıyoruz.
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpGet("getproductdetails")]
+        public IActionResult GetProductDetails(int categoryId)
+        {
+            var result = _productService.GetProductDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _productService.GeyById(id);
-            if(result.Success)
+            if (result.Success)
             {
                 return Ok(result);
-            }else
+            }
+            else
             {
                 return BadRequest(result);
             }
